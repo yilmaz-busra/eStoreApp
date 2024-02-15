@@ -13,8 +13,10 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { AiFillGift } from "react-icons/ai";
-import "../Styles/Navbar.css";
 
+import "../Styles/Navbar.css";
+import Signin from "../Pages/Auth/Signin";
+import Login from "../Pages/Auth/Login";
 function Navbar() {
   return (
     <nav>
@@ -40,8 +42,12 @@ function Navbar() {
             <FaRegUser />
           </MenuButton>
           <MenuList>
-            <MenuItem>Log In</MenuItem>
-            <MenuItem>Sign Up</MenuItem>
+            <Link to={"/login"}>
+              <MenuItem>Log In</MenuItem>
+            </Link>
+            <Link to={"/signin"}>
+              <MenuItem>Sign Up</MenuItem>
+            </Link>
           </MenuList>
         </Menu>
       </div>
