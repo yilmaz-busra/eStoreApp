@@ -1,22 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  Button,
-} from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import { AiFillGift } from "react-icons/ai";
 
 import "../Styles/Navbar.css";
-import Signin from "../Pages/Auth/Signin";
-import Login from "../Pages/Auth/Login";
+
 function Navbar() {
   return (
     <nav>
