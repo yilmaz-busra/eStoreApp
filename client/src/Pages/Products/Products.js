@@ -3,7 +3,7 @@ import React from "react";
 import Cards from "../../Components/Card/Card";
 
 import { Grid, Center } from "@chakra-ui/react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { fetchProductList } from "../../api";
 
