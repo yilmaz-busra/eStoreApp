@@ -7,6 +7,7 @@ import Navbar from "./Components/Navbar";
 import Signin from "./Pages/Auth/Signin";
 import Login from "./Pages/Auth/Login";
 import Products from "./Pages/Products/Products";
+import ProductDetail from "./Pages/ProductDetail";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path={"/"} element={<Products />} />
+        <Route path={"/:product_id"} element={<ProductDetail />} />
         <Route path={"/signin"} element={<Signin />} />
         <Route path={"/login"} element={<Login />} />
       </Routes>
