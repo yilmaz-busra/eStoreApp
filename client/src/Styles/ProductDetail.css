@@ -1,0 +1,30 @@
+.detailCard {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.detailImage {
+  width: 550px;
+  padding: 20px;
+  object-fit: contain;
+}
+.detailContent {
+  width: 550px;
+  padding: 20px;
+}
+h3 {
+  font-weight: 500;
+  font-size: 24px;
+}
+h5 {
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 200;
+}
+
+h6 {
+  font-size: 16px;
+  font-weight: 400;
+  padding-bottom: 5px;
+}
