@@ -12,26 +12,29 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 function Cards({ item }) {
   return (
     <div>
       <Card maxW="sm">
-        <CardBody>
-          <Image
-            src={item.photos[0]}
-            alt="Green double couch with wooden legs"
-            borderRadius="lg"
-          />
-          <Stack mt="6" spacing="3">
-            <Heading size="md">{item.title}</Heading>
-            <Text>{moment(item.createdAt).format("DD/MM/YYYY")}</Text>
-            <Text>{item.description.slice(0, 150)}...</Text>
-            <Text color="blue.600" fontSize="2xl">
-              {item.price}TL
-            </Text>
-          </Stack>
-        </CardBody>
+        <Link to={`/${item._id}`}>
+          <CardBody>
+            <Image
+              src={item.photos[0]}
+              alt="Green double couch with wooden legs"
+              borderRadius="lg"
+            />
+            <Stack mt="6" spacing="3">
+              <Heading size="md">{item.title}</Heading>
+              <Text>{moment(item.createdAt).format("DD/MM/YYYY")}</Text>
+              <Text>{item.description.slice(0, 150)}...</Text>
+              <Text color="blue.600" fontSize="2xl">
+                {item.price}TL
+              </Text>
+            </Stack>
+          </CardBody>
+        </Link>
         <Divider />
         <CardFooter>
           <ButtonGroup spacing="2">
