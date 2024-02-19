@@ -1,21 +1,32 @@
 import React from "react";
-
 import Cards from "../../Components/Card/Card";
-
 import { Grid, Center } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-
 import { fetchProductList } from "../../api";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 function Products() {
-  const { error, data, isLoading } = useQuery({
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    status,
+  } = useInfiniteQuery({
     queryKey: ["repoData"],
     queryFn: fetchProductList,
+    getNextPageParam: (lastGroup, allGroups) => {
+      const morePageExist = lastGroup?.length === 12;
+      if (!morePageExist) {
+        return;
+      }
+      return allGroups.length + 1;
+    },
   });
 
-  if (isLoading) return "Loading...";
-  if (error) return "An error has occurred: " + error.message;
-  console.log(data);
+  if (status === "loading") return "Loading...";
+  if (status === "error") return "An error has occurred: " + error.message;
 
   return (
     <Center>
@@ -29,9 +40,13 @@ function Products() {
           }}
           gap={4}
         >
-          {data.map((item, key) => {
-            return <Cards item={item} key={key} />;
-          })}
+          {data.pages.map((group, i) => (
+            <React.Fragment key={i}>
+              {group.map((item) => (
+                <Cards item={item} key={item._id} />
+              ))}
+            </React.Fragment>
+          ))}
         </Grid>
       </div>
     </Center>
