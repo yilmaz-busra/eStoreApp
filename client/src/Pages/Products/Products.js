@@ -1,6 +1,6 @@
 import React from "react";
 import Cards from "../../Components/Card/Card";
-import { Grid, Center } from "@chakra-ui/react";
+import { Grid, Center, Button, Flex } from "@chakra-ui/react";
 import { fetchProductList } from "../../api";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
@@ -19,7 +19,7 @@ function Products() {
     getNextPageParam: (lastGroup, allGroups) => {
       const morePageExist = lastGroup?.length === 12;
       if (!morePageExist) {
-        return;
+        return undefined;
       }
       return allGroups.length + 1;
     },
@@ -27,6 +27,9 @@ function Products() {
 
   if (status === "loading") return "Loading...";
   if (status === "error") return "An error has occurred: " + error.message;
+
+  // Ensure data and data.pages are available before trying to render them
+  if (!data || !data.pages) return "Loading..."; // This line ensures data is not undefined
 
   return (
     <Center>
@@ -48,6 +51,19 @@ function Products() {
             </React.Fragment>
           ))}
         </Grid>
+        <Flex mt="10px" justifyContent="center">
+          {hasNextPage && (
+            <Button
+              onClick={() => fetchNextPage()}
+              isLoading={isFetchingNextPage}
+              loadingText="Yükleniyor..."
+              colorScheme="blue"
+              mt="4"
+            >
+              Daha Fazla Yükle
+            </Button>
+          )}
+        </Flex>
       </div>
     </Center>
   );
