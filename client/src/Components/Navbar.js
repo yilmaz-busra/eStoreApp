@@ -34,7 +34,7 @@ function Navbar() {
             <Link to={"/login"}>
               <MenuItem>Log In</MenuItem>
             </Link>
-            <Link to={"/signin"}>
+            <Link to={"/signup"}>
               <MenuItem>Sign Up</MenuItem>
             </Link>
           </MenuList>
