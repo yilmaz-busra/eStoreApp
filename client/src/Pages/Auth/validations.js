@@ -4,7 +4,7 @@ const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
 export const SignupSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Invalid email")
+    .email("You need to enter e-mail")
     .required("You need to enter e-mail"),
   password: Yup.string()
     .min(5, "Too Short!")
