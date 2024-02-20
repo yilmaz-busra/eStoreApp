@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import {
   Card,
@@ -14,8 +14,10 @@ import {
 import { SignupSchema } from "./validations";
 import { fetchRegister } from "../../api";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
 function SignUp() {
+  const { login } = useAuth();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -30,6 +32,7 @@ function SignUp() {
           password: values.password,
         });
 
+        login(registerResponse);
         console.log(registerResponse);
       } catch (e) {
         bag.setErrors({ general: e.response.data.message });
