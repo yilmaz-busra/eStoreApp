@@ -8,9 +8,14 @@ import {
   FormHelperText,
   Center,
   Button,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
-import { SignupSchema } from "../../Pages/Auth/validations";
-function Signin() {
+import { SignupSchema } from "./validations";
+import { fetchRegister } from "../../api";
+import axios from "axios";
+
+function SignUp() {
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -18,8 +23,17 @@ function Signin() {
       confirmPassword: "",
     },
     validationSchema: SignupSchema,
-    onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
+    onSubmit: async (values, bag) => {
+      try {
+        const registerResponse = await fetchRegister({
+          email: values.email,
+          password: values.password,
+        });
+
+        console.log(registerResponse);
+      } catch (e) {
+        bag.setErrors({ general: e.response.data.message });
+      }
     },
   });
   return (
@@ -28,9 +42,14 @@ function Signin() {
         <h1
           style={{ fontWeight: "800", fontSize: "20px", textAlign: "center" }}
         >
-          Sign In
+          Sign Up
         </h1>
-
+        {formik.errors.general && (
+          <Alert status="error">
+            <AlertIcon />
+            {formik.errors.general}
+          </Alert>
+        )}
         <form onSubmit={formik.handleSubmit}>
           <FormControl>
             <FormLabel>Email Address</FormLabel>
@@ -41,12 +60,16 @@ function Signin() {
               onBlur={formik.handleBlur}
               value={formik.values.email}
               placeholder="Enter your e-mail address"
+              isInvalid={
+                formik.errors.email &&
+                formik.touched.email && (
+                  <p style={{ color: "red", fontSize: "12px" }}>
+                    {formik.errors.email}
+                  </p>
+                )
+              }
             />
-            {formik.errors.email && formik.touched.email && (
-              <p style={{ color: "red", fontSize: "12px" }}>
-                {formik.errors.email}
-              </p>
-            )}
+
             <FormHelperText>We'll never share your email.</FormHelperText>
           </FormControl>
           <FormControl>
@@ -56,6 +79,7 @@ function Signin() {
               type="password"
               onChange={formik.handleChange}
               value={formik.values.password}
+              isInvalid={formik.touched.password && formik.errors.password}
             />
           </FormControl>
           <FormControl>
@@ -65,6 +89,9 @@ function Signin() {
               type="password"
               onChange={formik.handleChange}
               value={formik.values.confirmPassword}
+              isInvalid={
+                formik.touched.confirmPassword && formik.errors.confirmPassword
+              }
             />
           </FormControl>
           <Button variant="solid" colorScheme="blue" mt="5px" type="submit">
@@ -76,4 +103,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default SignUp;
