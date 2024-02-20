@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./Pages/Home";
 
 import Navbar from "./Components/Navbar";
-import Signin from "./Pages/Auth/Signin";
+import SignUp from "./Pages/Auth/SignUp";
 import Login from "./Pages/Auth/Login";
 import Products from "./Pages/Products/Products";
 import ProductDetail from "./Pages/ProductDetail";
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Products />} />
         <Route path={"/:product_id"} element={<ProductDetail />} />
-        <Route path={"/signin"} element={<Signin />} />
+        <Route path={"/signup"} element={<SignUp />} />
         <Route path={"/login"} element={<Login />} />
       </Routes>
     </div>
