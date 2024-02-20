@@ -5,8 +5,10 @@ import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import { AiFillGift } from "react-icons/ai";
 
 import "../Styles/Navbar.css";
-
+import { useAuth } from "../context/AuthContext";
 function Navbar() {
+  const { loggedIn } = useAuth();
+
   return (
     <nav>
       <div className="left">
@@ -31,12 +33,25 @@ function Navbar() {
             <FaRegUser />
           </MenuButton>
           <MenuList>
-            <Link to={"/login"}>
-              <MenuItem>Log In</MenuItem>
-            </Link>
-            <Link to={"/signup"}>
-              <MenuItem>Sign Up</MenuItem>
-            </Link>
+            {!loggedIn ? (
+              <>
+                <Link to={"/login"}>
+                  <MenuItem>Log In</MenuItem>
+                </Link>
+                <Link to={"/signup"}>
+                  <MenuItem>Sign Up</MenuItem>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to={"/profile"}>
+                  <MenuItem>Profile</MenuItem>
+                </Link>
+                <Link to={"/"}>
+                  <MenuItem>Log out</MenuItem>
+                </Link>
+              </>
+            )}
           </MenuList>
         </Menu>
       </div>
