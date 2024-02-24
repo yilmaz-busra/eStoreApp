@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import {
   Card,
@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { SignupSchema } from "./validations";
 import { fetchRegister } from "../../api";
-import axios from "axios";
+
 import { useAuth } from "../../context/AuthContext";
 
 function SignUp() {
