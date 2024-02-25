@@ -13,8 +13,11 @@ import {
 } from "@chakra-ui/react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { useBasket } from "../../context/BasketContext";
 
 function Cards({ item }) {
+  const { addtoBasket, items } = useBasket();
+  const findBasketItem = items.find((data) => data._id === item._id);
   return (
     <div>
       <Card maxW="sm">
@@ -41,7 +44,11 @@ function Cards({ item }) {
             <Button variant="solid" colorScheme="blue">
               Buy now
             </Button>
-            <Button variant="ghost" colorScheme="blue">
+            <Button
+              variant="ghost"
+              colorScheme={findBasketItem ? "red" : "blue"}
+              onClick={() => addtoBasket(item, findBasketItem)}
+            >
               Add to cart
             </Button>
           </ButtonGroup>
