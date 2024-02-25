@@ -1,13 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
+import { FaShoppingBasket } from "react-icons/fa";
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import { AiFillGift } from "react-icons/ai";
 
 import "../Styles/Navbar.css";
 import { useAuth } from "../context/AuthContext";
+import { useBasket } from "../context/BasketContext";
 function Navbar() {
   const { loggedIn, logout } = useAuth();
+  const { items } = useBasket();
 
   const handleLogout = async () => {
     logout();
@@ -32,6 +35,10 @@ function Navbar() {
         </li>
       </ul>
       <div className="right">
+        <Button colorScheme="teal" variant="outline">
+          <FaShoppingBasket /> {items.length}
+        </Button>
+
         <Menu>
           <MenuButton as={Button}>
             <FaRegUser />
