@@ -11,10 +11,15 @@ nav {
   display: flex;
   align-items: center;
 }
+.right {
+  width: 120px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .menu {
   display: flex;
   gap: 15px; /*elemanlar arası bosluk*/
-  align-items: center;
 }
 
 .menu > li > a {
