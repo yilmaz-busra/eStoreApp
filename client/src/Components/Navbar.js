@@ -7,7 +7,11 @@ import { AiFillGift } from "react-icons/ai";
 import "../Styles/Navbar.css";
 import { useAuth } from "../context/AuthContext";
 function Navbar() {
-  const { loggedIn } = useAuth();
+  const { loggedIn, logout } = useAuth();
+
+  const handleLogout = async () => {
+    logout();
+  };
 
   return (
     <nav>
@@ -47,7 +51,7 @@ function Navbar() {
                 <Link to={"/profile"}>
                   <MenuItem>Profile</MenuItem>
                 </Link>
-                <Link to={"/"}>
+                <Link onClick={handleLogout} to={"/"}>
                   <MenuItem>Log out</MenuItem>
                 </Link>
               </>
