@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa6";
 import { FaShoppingBasket } from "react-icons/fa";
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
@@ -16,6 +16,7 @@ function Navbar() {
     logout();
   };
 
+  const navigate = useNavigate();
   return (
     <nav>
       <div className="left">
@@ -35,7 +36,11 @@ function Navbar() {
         </li>
       </ul>
       <div className="right">
-        <Button colorScheme="teal" variant="outline">
+        <Button
+          colorScheme="teal"
+          variant="outline"
+          onClick={() => navigate("/basket")}
+        >
           <FaShoppingBasket /> {items.length}
         </Button>
 
