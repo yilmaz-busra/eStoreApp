@@ -10,6 +10,7 @@ import Products from "./Pages/Products/Products";
 import ProductDetail from "./Pages/ProductDetail";
 import Profile from "./Pages/Profile";
 import ProtectedRoute from "./Pages/ProtectedRoute";
+import Basket from "./Pages/Basket/Basket.js";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path={"/basket"} element={<Basket />} />
       </Routes>
     </div>
   );
