@@ -11,6 +11,7 @@ import ProductDetail from "./Pages/ProductDetail";
 import Profile from "./Pages/Profile";
 import ProtectedRoute from "./Pages/ProtectedRoute";
 import Basket from "./Pages/Basket/Basket.js";
+import Error from "./Pages/Error404/error.js";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path={"/"} element={<Products />} />
-        <Route path={"/:product_id"} element={<ProductDetail />} />
+        <Route path={"/product/:product_id"} element={<ProductDetail />} />
         <Route path={"/signup"} element={<SignUp />} />
         <Route path={"/login"} element={<Login />} />
         <Route
@@ -30,6 +31,7 @@ function App() {
           }
         />
         <Route path={"/basket"} element={<Basket />} />
+        <Route path={"*"} element={<Error />} />
       </Routes>
     </div>
   );
