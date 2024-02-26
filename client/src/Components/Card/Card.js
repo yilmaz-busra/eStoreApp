@@ -21,7 +21,7 @@ function Cards({ item }) {
   return (
     <div>
       <Card maxW="sm">
-        <Link to={`/${item._id}`}>
+        <Link to={`/product/${item._id}`}>
           <CardBody>
             <Image
               src={item.photos[0]}
