@@ -49,7 +49,7 @@ function Cards({ item }) {
               colorScheme={findBasketItem ? "red" : "blue"}
               onClick={() => addtoBasket(item, findBasketItem)}
             >
-              Add to cart
+              {findBasketItem ? "Remove Object" : "Add to Basket"}
             </Button>
           </ButtonGroup>
         </CardFooter>
