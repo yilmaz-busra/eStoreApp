@@ -6,10 +6,12 @@ import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
 import { AiFillGift } from "react-icons/ai";
 
 import "../Styles/Navbar.css";
+
 import { useAuth } from "../context/AuthContext";
 import { useBasket } from "../context/BasketContext";
+
 function Navbar() {
-  const { loggedIn, logout } = useAuth();
+  const { loggedIn, logout, user } = useAuth();
   const { items } = useBasket();
 
   const handleLogout = async () => {
@@ -36,13 +38,23 @@ function Navbar() {
         </li>
       </ul>
       <div className="right">
-        <Button
-          colorScheme="teal"
-          variant="outline"
-          onClick={() => navigate("/basket")}
-        >
-          <FaShoppingBasket /> {items.length}
-        </Button>
+        {user?.role === "admin" ? (
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            onClick={() => navigate("/admin")}
+          >
+            Admin
+          </Button>
+        ) : (
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            onClick={() => navigate("/basket")}
+          >
+            <FaShoppingBasket /> {items.length}
+          </Button>
+        )}
 
         <Menu>
           <MenuButton as={Button}>
