@@ -1,8 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import Home from "./Pages/Home";
-
 import Navbar from "./Components/Navbar";
 import SignUp from "./Pages/Auth/SignUp";
 import Login from "./Pages/Auth/Login";
@@ -12,6 +10,7 @@ import Profile from "./Pages/Profile";
 import ProtectedRoute from "./Pages/ProtectedRoute";
 import Basket from "./Pages/Basket/Basket.js";
 import Error from "./Pages/Error404/error.js";
+import Admin from "./Pages/Admin/Admin.js";
 
 function App() {
   return (
@@ -31,6 +30,15 @@ function App() {
           }
         />
         <Route path={"/basket"} element={<Basket />} />
+
+        <Route
+          path={"/admin/*"}
+          element={
+            <ProtectedRoute panel={true}>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
         <Route path={"*"} element={<Error />} />
       </Routes>
     </div>
