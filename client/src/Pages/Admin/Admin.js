@@ -7,6 +7,8 @@ import Products from "./Products/Products";
 import Error from "../Error404/error.js";
 import "../../Styles/admin.css";
 import ProductDetaiil from "./ProductDetail/ProductDetaiil.js";
+import NewProduct from "./Products/NewProduct.js";
+
 function Admin() {
   return (
     <div>
@@ -29,6 +31,7 @@ function Admin() {
         <Route path={"orders"} element={<Orders />} />
         <Route path={"products"} element={<Products />} />
         <Route path={"products/:product_id"} element={<ProductDetaiil />} />
+        <Route path={"products/newproduct"} element={<NewProduct />} />
 
         <Route path={"*"} element={<Error />} />
       </Routes>
