@@ -93,3 +93,11 @@ export const deleteProduct = async (id) => {
   );
   return data;
 };
+
+export const updateProduct = async (input, id) => {
+  const { data } = await axios.put(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/product/${id}`,
+    input
+  );
+  return data;
+};
