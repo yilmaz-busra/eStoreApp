@@ -101,3 +101,11 @@ export const updateProduct = async (input, id) => {
   );
   return data;
 };
+
+export const postNewProduct = async (input) => {
+  const { data } = await axios.post(
+    `${process.env.REACT_APP_BASE_ENDPOINT}/product/`,
+    input
+  );
+  return data;
+};
