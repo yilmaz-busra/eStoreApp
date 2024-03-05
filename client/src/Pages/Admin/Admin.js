@@ -6,6 +6,7 @@ import Orders from "./Orders/Orders.js";
 import Products from "./Products/Products";
 import Error from "../Error404/error.js";
 import "../../Styles/admin.css";
+import ProductDetaiil from "./ProductDetail/ProductDetaiil.js";
 function Admin() {
   return (
     <div>
@@ -27,6 +28,8 @@ function Admin() {
         <Route path={"/"} element={<Home />} />
         <Route path={"orders"} element={<Orders />} />
         <Route path={"products"} element={<Products />} />
+        <Route path={"products/:product_id"} element={<ProductDetaiil />} />
+
         <Route path={"*"} element={<Error />} />
       </Routes>
     </div>
